@@ -1,0 +1,60 @@
+{% include 'main/header.html' %}
+
+{% load static %}
+
+{% block card %}
+
+     <main>
+        <section>
+            <h2>Courses</h2>
+            <ol>
+                {% for course in courses %}
+                    <li class="meetup-item">
+                        <article>
+                            {% if request.user.username == course.teacher or request.user.is_superuser %}
+                            <a href="{% url 'delete'  courseid=course.id %}">X</a>
+                        {% endif %}
+                            <div class="meetup-summary">
+                                <div class="meetup-image">
+                                    <img src="{%static 'main/img.jpeg'%}" , alt="src">
+                                </div>
+                                <div class="meetup-details">
+                                    <h2>{{ course.coursename }}</h2>
+                                    <address>
+                                        <strong>{{ course.teacher }}</strong>
+                                            {% if  course.teacher  == 'Yerbol Baygaraev' %}
+                                                <h1>PRICELESS</h1>
+                                            {% elif  course.teacher  == 'Bissenbay Dauletbaev' %}
+                                                <h1>PRICELESS</h1>
+                                            {% elif course.price == 0 %}
+                                                <h1>Free</h1>
+                                            {% else %}
+                                                <p>${{ course.price }}</p>
+                                            {% endif %}
+
+                                    </address>
+                                </div>
+                            </div>
+
+                            <div class="meetup-actions">
+                                {% if request.user in course.added.all %}
+                                <a class="btn" href="{% url 'like' course.id %}">Dislike</a>
+                                {% else %}
+                                <a class="btn" href="{% url 'like' course.id %}" >Like</a>
+                                {% endif %}
+                                <a href="/{{course.pk}}" class="btn">
+                                About
+                                </a>
+                            </div>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ol>
+        </section>
+    </main>
+
+
+{% endblock %}
+
+
+{% include 'main/Footer.html' %}
