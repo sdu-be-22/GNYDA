@@ -6,6 +6,7 @@ from django import forms
 
 # Create your models here.
 
+
 class Teacher(UserCreationForm):
     email = forms.EmailField(required=True)
 

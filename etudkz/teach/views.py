@@ -81,10 +81,11 @@ def add(request):
         coursename = request.POST['coursename']#Ibek
         teacher = request.POST['teacher']#FizX
         price = request.POST['price']#400
-
+        icon = request.POST['icon']
         crs.coursename = coursename
         crs.teacher = teacher
         crs.price = price
+        crs.icon = icon
         crs.save()
         return render(request , 'teach/addCourse.html',{
             'msg':f"Added to courses {coursename}, {teacher}, {price}"

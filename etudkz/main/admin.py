@@ -4,5 +4,4 @@ from .models import *
 
 admin.site.register(Course)
 admin.site.register(Comment)
-admin.site.register(Learning)
 admin.site.register(Friends)

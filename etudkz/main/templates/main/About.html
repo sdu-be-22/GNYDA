@@ -26,6 +26,12 @@
         <a><button type="submit">Add comment</button></a>
         </div>
     </form>
+<p>
+  <a href="{% url 'post_share' c_id=crsid %}">
+    Share this post
+  </a>
+</p>
+
 </body>
         <div>{% for c in comments %}
 

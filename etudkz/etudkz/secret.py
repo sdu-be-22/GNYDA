@@ -1,1 +1,1 @@
-secret.SECRET_KEY_h = 'asd'
+SECRET_KEY_h = 'Yessa'

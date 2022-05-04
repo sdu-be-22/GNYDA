@@ -2,22 +2,52 @@
 
 
 <body>
-    <h1>My cources</h1>
-    <div class="course">
 
-        <!-- <h2>{{ name }}</h2> -->
-        <!-- <h1>You are learning</h1> -->
-        <div>{% for c in crs%}
-            <ul class="comment">
-                <li>
-                    <h3>{{ crs_name}}</h3>
-                    <h2>{{ teacher }}</h2>
-                    <a href="/{{c.course_id}}" class="btn">About</a>
-                    <a href="{% url 'delern' c.course_id %}">X</a>
-                </li>
-            </ul>
-            {% endfor %}
-        </div>
+    <div class="course">
+        <h2>Hello {{ name }}</h2>
+        <main>
+            <section>
+                {% if a == 0 %}
+                <h2>You don't have learning any courses</h2>
+
+                {% else %}
+                <h2>My learning</h2>
+                <ol>
+                        {% for course in courses %}
+                            <li class="meetup-item">
+                            <article>
+                                <a href="{% url 'delern'  courseid=course.id %}">X</a>
+                                <div class="meetup-summary">
+                                    <div class="meetup-image">
+                                        <img src="{%static course.icon%}" , alt="src">
+                                    </div>
+                                    <div class="meetup-details">
+                                        <h2>{{ course.coursename }}</h2>
+                                        <address>
+                                            <strong>{{ course.teacher }}</strong>
+                                            {% if  course.teacher  == 'Yerbol Baygaraev' %}
+                                                <h1>PRICELESS</h1>
+                                            {% elif  course.teacher  == 'Bissenbay Dauletbaev' %}
+                                                <h1>PRICELESS</h1>
+                                            {% elif course.price == 0 %}
+                                                <h1>Free</h1>
+                                            {% else %}
+                                                <p>${{ course.price }}</p>
+                                            {% endif %}
+                                        </address>
+                                    </div>
+                                </div>
+                                <div class="meetup-actions">
+                                    <a href="/{{course.pk}}" class="btn">Learn</a>
+                                </div>
+                            </article>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ol>
+            </section>
+        </main>
+    </div>
 </body>
 
 </html>
