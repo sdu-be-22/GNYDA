@@ -8,7 +8,16 @@
         </p>
 
         {% for c in courses %} {% for request.user.username in c.added.all%}
-        <h1>{{ c.id }}</h1>
+{#        <h1>{{ c.id }}</h1>#}
+            <div class="card text-center">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ c.id }}</h5>
+      <p class="card-text"><pre>                                          {{ c.coursename }}                                          </pre></p>
+    <a href="/{{ c.id }}" class="btn btn-primary">Open course</a>
+  </div>
+</div>
         {% endfor %} {% endfor %}
     </div>
 </div>
