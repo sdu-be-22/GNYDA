@@ -2,33 +2,43 @@
 
 <head>
     <script src="https://kit.fontawesome.com/d6626765ab.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="nav" style="margin: -1%">
-        <span>
-        <a  href="/html/"><img class="logo" src=" {% static 'main/logo.png' %} "></a>
-    <ol>
-        <li><a href="/">Catalog</a></li>
-        {% if request.user.is_authenticated and not request.user.is_superuser %}
-            <li><a href="{% url 'learn'%}">Learning</a></li>
-        {% endif %}
-        <li><a href="/teach/">Teach</a></li>
-        <form action="{% url 'searching' %}" method="post">
-            {% csrf_token %}
-        <li><input type="search" placeholder="Search..." name = 'name'></li>
-        </form>
-        <div class="divider"></div>
+    <div class="main">
 
-        {% if request.user.is_authenticated %}
-            <li class="lgin"> <a id ='' href="/account"><button>{{ request.user.username }}</button></a></li>
-            <li class="reg"> <a href="{% url 'logout' %}"><button>logout</button> </a></li>
-        {% else %}
-            <li class="lgin"> <a href="/teach/login"><button>Log in</button></a></li>
-            <li class="reg"> <a href="/teach/test"><button>Sign up</button> </a></li>
-        {% endif %}
-    </ol>
-    </span>
-    </nav>
+        <div class="nav" style="margin: -1%">
+            <span>
+            <a  href="/html/"><img class="logo" src=" {% static 'main/logo.png' %} "></a>
+        <div class = "header_center">
+            <div class="test1 nnn">
+                <li class="n1"><a href="/" style="color:black;" onmouseover="this.style.color='gray';" onmouseout="this.style.color='black';">Catalog</a></li>
+                {% if request.user.is_authenticated and not request.user.is_superuser %}
+                    <li class="n1"><a href="{% url 'learn'%}" style="color:black;">Learning</a></li>
+                {% endif %}
+                <li class="n1"><a href="/teach/" style="color:black;" onmouseover="this.style.color='gray';" onmouseout="this.style.color='black';">Teach</a></li>
+    
+            </div>
+            <div class="nnn">
+                <form action="{% url 'searching' %}" method="post">
+                    {% csrf_token %}
+                <li><input type="search" placeholder="Search..." name = 'name'></li>
+                </form>
+            </div>
+            <div class="divider"></div>
+            <div class="nnn nnn_3">
+                {% if request.user.is_authenticated %}
+                    <li class="lgin n2"> <a id ='' href="/account"><button>{{ request.user.username }}</button></a></li>
+                    <li class="reg n2"> <a href="{% url 'logout' %}"><button>logout</button> </a></li>
+                {% else %}
+                    <li class="lgin n2"> <a href="/teach/login"><button>Log in</button></a></li>
+                    <li class="reg n2"> <a href="/teach/test"><button>Sign up</button> </a></li>
+                {% endif %}
+            </div>
+        </div>
+        </span>
+        </div>
+    </div>
 </body>
 {% endblock %}

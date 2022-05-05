@@ -1,30 +1,28 @@
-{% include 'main/header.html' %}
+{% include 'main/header.html' %} {% load static %} {% block card %}
 
-{% load static %}
-
-{% block card %}
-
-     <main>
-        <section>
-            <h2>Courses</h2>
-            <ol>
-                {% for course in courses %}
-                    <li class="meetup-item">
-                        <article>
-                            {% if request.user.username == course.teacher or request.user.is_superuser %}
-                            <a href="{% url 'delete'  courseid=course.id %}">X</a>
-                        {% endif %}
-                            <div class="meetup-summary">
-                                <div class="meetup-image">
-                                    <img src="{%static course.icon%}" , alt="src">
-                                </div>
-                                <div class="meetup-details">
-                                    <h2>{{ course.coursename }}</h2>
-                                    <address>
+<main>
+    <section>
+        <h2>Courses</h2>
+        <ol style="padding: 0; margin-bottom: 2rem;">
+            {% for course in courses %}
+            <!-- <div class="card-group"> -->
+            <li class="card" style="width: 16rem; margin-bottom: 5%;">
+                <article>
+                    {% if request.user.username == course.teacher or request.user.is_superuser %}
+                    <a href="{% url 'delete'  courseid=course.id %}">X</a> {% endif %}
+                    <div class=" card-body">
+                        <div class="card-img-top meetup-image">
+                            <img src="{%static course.icon%}" style="margin-left: 40%;" alt="src">
+                        </div>
+                        <div class="card-title">
+                            <h2>{{ course.coursename }}</h2>
+                            <address>
                                         <strong>{{ course.teacher }}</strong>
                                             {% if  course.teacher  == 'Yerbol Baygaraev' %}
                                                 <h1>PRICELESS</h1>
                                             {% elif  course.teacher  == 'Bissenbay Dauletbaev' %}
+                                                <h1>PRICELESS</h1>
+                                            {% elif  course.teacher  == 'isko' %}
                                                 <h1>PRICELESS</h1>
                                             {% elif course.price == 0 %}
                                                 <h1>Free</h1>
@@ -33,28 +31,25 @@
                                             {% endif %}
 
                                     </address>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <div class="meetup-actions">
-                                {% if request.user in course.added.all %}
-                                <a class="btn" href="{% url 'like' course.id %}">Dislike</a>
-                                {% else %}
-                                <a class="btn" href="{% url 'like' course.id %}" >Like</a>
-                                {% endif %}
-                                <a href="/{{course.pk}}" class="btn">
+                    <div class="card-body">
+                        {% if request.user in course.added.all %}
+                        <a class="btn btn-info" href="{% url 'like' course.id %}">Dislike</a> {% else %}
+                        <a class="btn btn-info" href="{% url 'like' course.id %}">Like</a> {% endif %}
+                        <a href="/{{course.pk}}" class="btn btn-info">
                                 About
                                 </a>
-                            </div>
-                        </article>
-                    </li>
-                {% endfor %}
-            </ol>
-        </section>
-    </main>
+                    </div>
+                </article>
+            </li>
+            {% endfor %}
+            <!-- </div> -->
+        </ol>
+
+    </section>
+</main>
 
 
-{% endblock %}
-
-
-{% include 'main/Footer.html' %}
+{% endblock %} {% include 'main/Footer.html' %}

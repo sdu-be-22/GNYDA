@@ -1,9 +1,11 @@
 .main {
     padding: 40px;
 }
-.nav1{
+
+.nav1 {
     width: 300px;
 }
+
 .nav2 {
     display: flex;
     justify-content: center;
