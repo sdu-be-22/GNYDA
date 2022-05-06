@@ -1,9 +1,29 @@
-
-.comment{
+.comment {
     border: black 1px solid;
-    background-color: bisque;
+    background-color: aliceblue;
     padding: 5px;
 }
-.commch{
+
+.commch {
     background-color: red;
+}
+
+.nav1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 40px;
+}
+
+
+/* .course {
+    margin: 50px;
+} */
+
+.g1 {
+    margin-top: 20px;
+}
+
+.g2 {
+    margin-top: 20px;
 }
