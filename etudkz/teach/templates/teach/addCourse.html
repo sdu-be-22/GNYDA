@@ -7,12 +7,12 @@
 </head>
 <body>
     <div>
-        <form action='{% url "add" %}' method="post">
+        <form action='{% url "add" %}' method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input name="coursename" placeholder="Coursename">
             <input name="teacher" placeholder="Teacher">
             <input name="price" placeholder="Price">
-            <button type="submit">Upload</button>
+            <input type="file" name="icon" placeholder="Upload">
             <input type="submit">
         </form>
         {% if msg %}

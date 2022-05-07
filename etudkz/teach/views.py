@@ -16,7 +16,6 @@ from django.views import generic
 
 
 
-
 def account(request):
 
     if request.user.is_authenticated:
@@ -71,7 +70,13 @@ def logout_view(request):
 def index(request):
     boo = request.user.is_authenticated
     if boo and request.user.is_superuser:
-        return render(request , 'teach/addCourse.html')
+        print(123)
+        crs = Course()
+
+        form = crs.icon
+        return render(request , 'teach/addCourse.html',{
+            'frm':form
+        })
     else :
         return render(request,'main/header.html')
 
@@ -81,12 +86,21 @@ def add(request):
         coursename = request.POST['coursename']#Ibek
         teacher = request.POST['teacher']#FizX
         price = request.POST['price']#400
-        icon = request.POST['icon']
+        print('asdklmasndjaks')
+        print(9999)
+        icon = request.FILES['icon']
         crs.coursename = coursename
         crs.teacher = teacher
         crs.price = price
-        crs.icon = icon
-        crs.save()
+        print(icon)
+
+        # crs.icon = 'course_images/'+icon
+        object = Course.objects.create(coursename = coursename,
+                                       teacher = teacher,
+                                       price = price,
+                                       icon = icon)
+        object.save()
+        # crs.save()
         return render(request , 'teach/addCourse.html',{
             'msg':f"Added to courses {coursename}, {teacher}, {price}"
         })
@@ -95,7 +109,12 @@ def add(request):
 
 def reglog(request):
     if request.user.is_superuser:
-        return render(request,'teach/addCourse.html')
+        crs = Course()
+        form = crs.icon
+        print("sljadajskdks")
+        return render(request,'teach/addCourse.html' , {
+            'frm': form
+            })
     else :
         if request.method == 'POST':
             form = UserCreationForm(request.POST)

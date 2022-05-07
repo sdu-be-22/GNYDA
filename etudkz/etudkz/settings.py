@@ -18,7 +18,7 @@ DEBUG = True
 
 # <<<<<<< HEAD
 ALLOWED_HOSTS = ['localhost','192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122' , '10.48.96.62','172.20.10.2'
-                 ,'10.48.34.47','10.48.34.47']
+                 ,'10.48.34.47','10.48.34.47', ]
 # =======
 # ALLOWED_HOSTS = ['192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122']
 # ALLOWED_HOSTS = ['127.0.0.1']
@@ -117,7 +117,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = 'main/course_images/'
+MEDIA_URL = '/main/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main/static')
@@ -137,3 +137,4 @@ EMAIL_HOST_USER = 'esimhan.e02@gmail.com'
 EMAIL_HOST_PASSWORD = 'E20021110e'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+

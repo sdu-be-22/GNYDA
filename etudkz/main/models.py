@@ -9,11 +9,15 @@ class Course(models.Model):
     # id = i++
     coursename = models.CharField(max_length=256, null=False)
     teacher = models.CharField(max_length=32, null=False)
-    icon = models.ImageField(upload_to='course_images' , null=False)
+    icon = models.ImageField(
+        upload_to='course_images' ,
+        null=False , default='/static/course_images/img.jpeg')
     price = models.DecimalField(max_digits=8, decimal_places=2)
     added = models.ManyToManyField(User, default=None,related_name='added')
     learn_user = models.ManyToManyField(User,blank=True,related_name='learn_user')
     liked = models.BooleanField(default=False)
+
+
 
     def __str__(self):
         return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price} , {self.added.all()},'
