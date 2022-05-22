@@ -17,13 +17,12 @@ from django.views import generic
 
 
 def account(request):
-
     if request.user.is_authenticated:
         return render(request, 'teach/account.html',{
             'username':request.user.username
         })
     else:
-        return render(request, 'teach/login.html')
+        return render(request, 'main/hello.html')
 
 
 def user(request, username):
@@ -44,24 +43,23 @@ def liked(request):
     })
 
 def login_view(request):
-    boo = request.user.is_authenticated
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username = username , password = password)
         if user is not None:
             login(request,user)
-            return render(request, 'main/header.html', {
+            return render(request, 'main/card.html', {
                 'request': request
             })
 
         else:
-            return render(request , 'teach/login.html',{
+            return render(request , 'main/hello.html',{
                 'msg':'Incorrect '
             })
             # return HttpResponse(13)
     else:
-        return render(request, 'teach/login.html',{
+        return render(request, 'main/hello.html',{
         })
 
 def logout_view(request):
@@ -70,28 +68,16 @@ def logout_view(request):
 def index(request):
     boo = request.user.is_authenticated
     if boo and request.user.is_superuser:
-        print(123)
-        crs = Course()
-
-        form = crs.icon
-        return render(request , 'teach/addCourse.html',{
-            'frm':form
-        })
+        return render(request , 'teach/addCourse.html')
     else :
         return render(request,'main/header.html')
 
 def add(request):
     if request.method == 'POST':
-        crs = Course()
         coursename = request.POST['coursename']#Ibek
         teacher = request.POST['teacher']#FizX
         price = request.POST['price']#400
-        print('asdklmasndjaks')
-        print(9999)
         icon = request.FILES['icon']
-        crs.coursename = coursename
-        crs.teacher = teacher
-        crs.price = price
         print(icon)
 
         # crs.icon = 'course_images/'+icon
