@@ -11,8 +11,6 @@ from django import forms
 from .models import *
 
 
-def hello(request):
-    return render(request, 'main/hello.html')
 
 def course(request):
     courses = Course.objects.all()

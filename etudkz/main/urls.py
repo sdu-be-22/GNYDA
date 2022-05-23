@@ -4,8 +4,8 @@ import teach.views
 from . import views
 # from teach import views
 urlpatterns = [
-    path('', views.hello, name = 'hello'),
-    path('course' , views.course , name = 'course'),
+    # path('',views.course),
+    path('' , views.course , name = 'course'),
     path('<int:courseid>' , views.openC),
     path('del/<int:courseid>' , views.delete  , name='delete'),
     path('result' , views.srch, name='searching'),

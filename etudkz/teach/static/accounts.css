@@ -4,14 +4,13 @@
 
 .nav1 {
     width: 300px;
-
 }
 
 .nav2 {
     display: flex;
     justify-content: center;
     margin-left: 300px;
-    text-align: center;z
+    text-align: center;
 }
 
 .profile2 a {
