@@ -18,7 +18,7 @@ DEBUG = True
 
 # <<<<<<< HEAD
 ALLOWED_HOSTS = ['localhost','192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122' , '10.48.96.62','172.20.10.2'
-                 ,'10.48.34.47','10.48.34.47', 'tazhibayd.pythonanywhere.com']
+                 ,'10.48.34.47','10.48.34.47', ]
 # =======
 # ALLOWED_HOSTS = ['192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122']
 # ALLOWED_HOSTS = ['127.0.0.1']
@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'teach',
-    'rest_framework',
 
 
 ]

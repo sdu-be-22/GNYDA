@@ -41,7 +41,6 @@
                         <a href="/{{course.pk}}" class="btn btn-info">
                                 About
                                 </a>
-                        <a href="{% url 'edit_course' course.id %}">Edit</a>
                     </div>
                 </article>
             </li>
@@ -53,5 +52,4 @@
 </main>
 
 
-{% endblock %}
-{% include 'main/Footer.html' %}
+{% endblock %} {% include 'main/Footer.html' %}

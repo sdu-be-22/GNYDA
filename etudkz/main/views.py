@@ -1,7 +1,6 @@
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from django.template.context_processors import request
 from django.urls import *
 from .models import *
 # Create your views here.
@@ -40,7 +39,7 @@ def delcomment(request , commentId):
 
 def logout_view(request):
     logout(request)
-    return redirect('/')
+    return render(request,'teach/login.html')
 
 
 def delete(request , courseid):
@@ -197,8 +196,7 @@ def addCom(request,courseid):
         comment = Comment.objects.filter(
             Q(course_id=c.pk)
         )
-        return render(request, 'main/About.html'
-                      , {
+        return render(request, 'main/About.html', {
             'name': name,
             'teacher': teacher,
             'id': price,
@@ -208,34 +206,6 @@ def addCom(request,courseid):
             'c_id': c.id,
         })
 
-# class prof(request):
-    # if request.method ==
-
-def edit(request):
-    if request.method == 'POST':
-        # reverse('')
-        # print(123)
-        name = request.POST['firstname']
-        last = request.POST['lastname']
-        mail = request.POST['email']
-        user = request.user
-        user.first_name = name
-        user.last_name = last
-        user.email = mail
-        user.save()
-        return redirect('/account')
-        # print(user.email)
-    else:
-        return render(request, 'teach/edit_profile.html')
-    return render(request, 'teach/edit_profile.html')
-
-
-def edit_course(request , courseid):
-    course = Course.objects.get(id = courseid)
-    print(course)
-    return render(request, 'main/edit_Course.html',{
-                  'course': course,
-    })
 
 def openC(request,courseid):
     len = Course.objects.all().last().id
@@ -347,7 +317,7 @@ def post_share(request, c_id):
                       f"{course.coursename}"
             message = f"Read {course.coursename} at {post_url}\n\n" \
                       f"{cd['name']}\'s comments: {cd['comments']}"
-            send_mail(subject, message, 'tazhibayda@gmail.com',
+            send_mail(subject, message, '200103408@sdu.stu.edu.kz',
                       [cd['to']])
             sent = True
     else:

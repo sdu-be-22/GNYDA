@@ -22,11 +22,13 @@
                 <a href="{% url 'liked' %}" data-purpose="user_manage:edit-account">Liked courses</a>
             </li>
 
-
+            <li class="on1">
+                <a href="{% url 'liked' %}" data-purpose="user_manage:edit-account">Friend list</a>
+            </li>
 
             {%if request.user.is_authenticated%}
             <li class="on1">
-                <a href="/account/edit" data-purpose="user_manage:edit-account">Edit Profile</a>
+                <a href="{% url 'edit_profile' %}" data-purpose="user_manage:edit-account">Edit Profile</a>
             </li>
             {%endif%}
         </ul>

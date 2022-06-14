@@ -9,9 +9,7 @@ urlpatterns = [
     path('',views.index, name='index'),
     path('test/',views.reglog , name='reglog'),
     path('add', views.add , name = 'add'),
-    path('change/<int:courseid>', views.change , name = 'change'),
-
-              ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
 

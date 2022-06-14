@@ -1,25 +1,13 @@
 {% include 'main/header.html' %}
 
 
+<h1>Edit Profile</h1>
+<br/><br/>
 
 
-<div class="input-group profile">
-    <div class="navg">
-        {% include 'teach/list.html' %}
-    </div>
-    <div class="">
-        <h1>Edit Profile</h1>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-primary"> Update Profile</button>
 
-        <form method="POST" class="formm">
-            {% csrf_token %}
-            <input type="text" name="firstname" placeholder="First name" class="form-control">
-
-            <input type="text" name="lastname" placeholder="Last name" class="form-control">
-
-            <input type="email" name="email" placeholder="Email" class="form-control">
-            <button class="btn btn-primary update"> Update Profile</button>
-        </form>
-    </div>
 </div>
-
-{% include 'main/footer.html' %}

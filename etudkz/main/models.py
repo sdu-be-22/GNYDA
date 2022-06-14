@@ -15,7 +15,8 @@ class Course(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     added = models.ManyToManyField(User, default=None,related_name='added')
     learn_user = models.ManyToManyField(User,blank=True,related_name='learn_user')
-    liked = models.OneToOneField(User , null= True, on_delete=models.CASCADE)
+    liked = models.BooleanField(default=False)
+
 
 
     def __str__(self):
@@ -36,16 +37,9 @@ class Test(models.Model):
         return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price} {self.id}'
 
 class Friends(models.Model):
-    user_id = models.IntegerField()
-    friend_id = models.IntegerField()
-
-
-
-
-
-
-
-
+    # a = models.ForeignKey(User, on_delete=models.CASCADE)
+    # friends = models.ManyToManyField(User)
+    a = models.CharField(max_length=120)
 
 class Comment(models.Model):
    author = models.CharField(max_length=64)
