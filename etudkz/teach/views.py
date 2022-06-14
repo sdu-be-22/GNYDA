@@ -1,7 +1,8 @@
-from urllib import request
+# from urllib import request
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirect
 import re
 from django.shortcuts import render,HttpResponseRedirect , HttpResponse,redirect
+from django.utils.datastructures import MultiValueDictKeyError
 from main.models import Course
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
@@ -29,13 +30,15 @@ def account(request):
 def user(request, username):
     if User.objects.get(username = username) is not None:
         user = User.objects.get(username = username)
+        active = request.user
+
         return render(request, 'teach/user.html',{
                         'user':user,
             }
         )
 
 def liked(request):
-    courses = Course.objects.all().filter(
+    courses = Course.objects.filter(
 
     )
     return render(request , 'teach/liked1.html',{
@@ -46,14 +49,23 @@ def liked(request):
 def login_view(request):
     boo = request.user.is_authenticated
     if request.method == 'POST':
+        print(123)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username = username , password = password)
         if user is not None:
             login(request,user)
+
             return render(request, 'main/header.html', {
                 'request': request
             })
+
+            # return render(request, 'main/card.html', {
+            #     'request': request
+            # })
+
+            return redirect('/course')
+            # return redirect('course')
 
         else:
             return render(request , 'teach/login.html',{
@@ -94,6 +106,17 @@ def add(request):
         crs.price = price
         print(icon)
 
+        coursename = request.POST['coursename']#Ibek
+        teacher = request.POST['teacher']#FizX
+        price = request.POST['price']#400
+        # if request.FILES['icon'] is None:
+        #     return render(request, 'teach/addCourse.html')
+        try:
+            icon = request.FILES['icon']
+        except MultiValueDictKeyError:
+            icon = 'course_images/images.png'
+        # print(icon)
+
         # crs.icon = 'course_images/'+icon
         object = Course.objects.create(coursename = coursename,
                                        teacher = teacher,
@@ -105,6 +128,26 @@ def add(request):
             'msg':f"Added to courses {coursename}, {teacher}, {price}"
         })
 
+def change(request , courseid):
+    if request.method == 'POST':
+        coursename = request.POST['coursename']  # Ibek
+        teacher = request.POST['teacher']  # FizX
+        price = request.POST['price']  # 400
+        try:
+            icon = request.FILES['icon']
+        except MultiValueDictKeyError:
+            icon = 'course_images/images.png'
+        # print(icon)
+
+        # crs.icon = 'course_images/'+icon
+        object = Course.objects.get(id = courseid)
+        object.coursename = coursename
+        object.teacher = teacher
+        object.price = price
+        object.icon = icon
+        object.save()
+        # crs.save()
+        return redirect('/course')
 
 
 def reglog(request):
@@ -151,15 +194,20 @@ def regist(request):
     })
 
 
-class UserEditView(generic.UpdateView):
-    form_class = UserChangeForm
-    template_name = 'teach/edit_profile.html'
-    success_url = reverse_lazy('account')
+# class UserEditView(request):
+    # form_class = UserChangeForm
+    # template_name = 'teach/edit_profile.html'
+    # success_url = reverse_lazy('account')
 
-    def get_object(self):
-        return self.request.user
+    # def get_object(self):
+    #     return self.request.user
+    # if request.method == 'POST':
+    #     print(111)
+    # else:
+    #     print(123)
 
 
+    # return render(request , 'teach/edit_profile.html')
     # if request.method == 'POST':
         # form = UserCreationForm(request='POST')
         # if form.is_valid():

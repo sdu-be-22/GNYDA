@@ -1,12 +1,13 @@
 {% include 'main/header.html' %} {% load static %}
 
-
 <body>
 
-    <div class="course">
-        <h2>Hello {{ name }}</h2>
+    <div class="main" style="display: flex">
+        {% include 'teach/list.html' %}
         <main>
+
             <section>
+
                 {% if a == 0 %}
                 <h2>You don't have learning any courses</h2>
 
@@ -49,5 +50,5 @@
         </main>
     </div>
 </body>
-
+{% include 'main/Footer.html' %}
 </html>
