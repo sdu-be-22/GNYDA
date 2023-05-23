@@ -17,8 +17,7 @@ SECRET_KEY = secret.SECRET_KEY_h
 DEBUG = True
 
 # <<<<<<< HEAD
-ALLOWED_HOSTS = ['localhost','192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122' , '10.48.96.62','172.20.10.2'
-                 ,'10.48.34.47','10.48.34.47', ]
+ALLOWED_HOSTS = ['*']
 # =======
 # ALLOWED_HOSTS = ['192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122']
 # ALLOWED_HOSTS = ['127.0.0.1']
